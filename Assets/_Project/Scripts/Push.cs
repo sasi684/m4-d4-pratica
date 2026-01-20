@@ -5,6 +5,8 @@ public class Push : MonoBehaviour
     [SerializeField] private float _pushForce = 10f;
     [SerializeField] private float _maxDistance = 40f;
     [SerializeField] private LayerMask _pushableLayerMask;
+    [SerializeField] private GameObject _bulletHolePrefab;
+    [SerializeField] private Vector3 _offset;
 
     private void Update()
     {
@@ -17,9 +19,10 @@ public class Push : MonoBehaviour
                 if(hit.collider.TryGetComponent<Rigidbody>(out var rb))
                 {
                     Debug.Log("Push");
-                    Vector3 push = mousePos.direction * _pushForce;
 
-                    rb.AddForceAtPosition(push, hit.point, ForceMode.Impulse);
+                    GameObject bulletHole = Instantiate(_bulletHolePrefab, hit.point - _offset, Quaternion.LookRotation(-hit.normal), hit.transform);
+                    bulletHole.transform.localScale = Vector3.one / hit.transform.localScale.x;
+                    rb.AddForceAtPosition(mousePos.direction * _pushForce, hit.point, ForceMode.Impulse);
                 }
             }
         }

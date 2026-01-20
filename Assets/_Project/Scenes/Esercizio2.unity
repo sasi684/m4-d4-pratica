@@ -726,6 +726,9 @@ MonoBehaviour:
   _pushableLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  _bulletHolePrefab: {fileID: 3042819599315972034, guid: 8387c0e1b96dd904bb7b73585c5c38c1,
+    type: 3}
+  _offset: {x: 0.001, y: 0.001, z: 0.001}
 --- !u!1 &1195657040
 GameObject:
   m_ObjectHideFlags: 0
